@@ -49,6 +49,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="src\CalculatorDelimiter.cs" />
+    <Compile Include="src\CalculatorMapper.cs" />
+    <Compile Include="src\CalculatorValidator.cs" />
     <Compile Include="src\StringCalculator.cs" />
     <Compile Include="src\CalculatorParser.cs" />
     <Compile Include="tests\StringCalculatorShould.cs" />
