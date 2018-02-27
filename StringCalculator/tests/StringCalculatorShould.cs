@@ -101,5 +101,15 @@ namespace StringCalculatorKata.tests
             
             Assert.AreEqual(3, actual);
         }
+
+        [TestMethod]
+        public void Have_Delimiter_Of_More_Than_One_Character()
+        {
+            StringCalculator stringCalculator = new StringCalculator();
+
+            int actual = stringCalculator.Add("//[*****]1*****2*****3");
+
+            Assert.AreEqual(6, actual);
+        }
     }
 }

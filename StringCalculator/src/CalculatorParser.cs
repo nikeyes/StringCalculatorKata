@@ -6,9 +6,9 @@ namespace StringCalculatorKata.src
 {
     public class CalculatorParser
     {
-        public const char SALTO_DE_LINEA = '\n';
+        public const string SALTO_DE_LINEA = "\n";
         private const string SPECIAL_DELIMITER = "//";
-        private const char DEFAULT_DELIMITER = ',';
+        private const string DEFAULT_DELIMITER = ",";
 
         private IEnumerable<int> _sumandosList;
 
@@ -21,7 +21,7 @@ namespace StringCalculatorKata.src
         }
         public CalculatorParser(string numbers)
         {
-            char delimiter = DEFAULT_DELIMITER;
+            string delimiter = DEFAULT_DELIMITER;
             delimiter = GetDelimiter(numbers);
             numbers = ReplaceSaltoDeLineaPorDelimiter(numbers, delimiter);
             numbers = RemoveSpecialDelmiter(numbers);
@@ -45,21 +45,31 @@ namespace StringCalculatorKata.src
             }  
         }
 
-        private IEnumerable<int> GetListOfInts(string sumandos, char delimiter)
+        private IEnumerable<int> GetListOfInts(string sumandos, string delimiter)
         {
-            return sumandos.Split(delimiter).Select(sumando => int.Parse(sumando));
+            return sumandos.Split(new string[] { delimiter }, StringSplitOptions.RemoveEmptyEntries)
+                    .Select(sumando => int.Parse(sumando));
         }
 
-        private string ReplaceSaltoDeLineaPorDelimiter(string sumandos, char delimiter)
+        private string ReplaceSaltoDeLineaPorDelimiter(string sumandos, string delimiter)
         {
             return sumandos.Replace(SALTO_DE_LINEA, delimiter);
         }
         
-        private char GetDelimiter(string sumandos)
+        private string GetDelimiter(string sumandos)
         {
-            if (sumandos.Contains(SPECIAL_DELIMITER) )
+            if (sumandos.Contains(SPECIAL_DELIMITER))
             {
-                return sumandos.Substring(2, 1)[0];
+                if (sumandos.Contains("["))
+                {
+                    int startIndex = sumandos.IndexOf("[") + 1;
+                    int length = sumandos.IndexOf("]") - startIndex;
+                    return sumandos.Substring(startIndex, length);
+                }
+                else
+                { 
+                    return sumandos.Substring(2, 1);
+                }
             }
 
             return DEFAULT_DELIMITER;
@@ -69,8 +79,17 @@ namespace StringCalculatorKata.src
         {
             if (sumandos.Contains(SPECIAL_DELIMITER))
             {
-                return sumandos.Substring(3);
-            }
+                if (sumandos.Contains("]"))
+                { 
+                    int startIndex = sumandos.IndexOf("]") + 1;
+                    return sumandos.Substring(startIndex);
+                }
+                else
+                {
+                    return sumandos.Substring(3);
+                }
+                
+                            }
 
             return sumandos;
         }
