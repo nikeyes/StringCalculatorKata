@@ -89,7 +89,7 @@ namespace StringCalculatorKata.src
                     return sumandos.Substring(3);
                 }
                 
-                            }
+            }
 
             return sumandos;
         }
