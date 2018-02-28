@@ -16,27 +16,7 @@ namespace StringCalculatorKata.src
             }
 
             CalculatorParser calculatorParser = new CalculatorParser(numbers);
-
-            if (calculatorParser.IsMultipleNumber())
-            {
-                return Sum(calculatorParser);
-            }
-            else
-            {
-                return calculatorParser.Sumandos.First();
-            }
-        }
-        
-        private int Sum(CalculatorParser calculatorParser)
-        {
-            int suma = 0;
-
-            foreach (int sumando in calculatorParser.Sumandos)
-            {
-                suma += sumando;
-            }
-
-            return suma;
+            return calculatorParser.Sumandos.Sum();
         }
     }
 }

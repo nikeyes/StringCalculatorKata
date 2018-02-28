@@ -18,6 +18,8 @@ namespace StringCalculatorKata.src
             IEnumerable<int> sumandosList = sumandos.Split(new string[] { delimiter }, StringSplitOptions.RemoveEmptyEntries)
                     .Select(sumando => int.Parse(sumando));
 
+            //TODO [REFACTOR] ¿Esto tiene serntido q ue vaya aquí? Es una 
+            //regla de negocio dentro del mapper...
             sumandosList = RemoveNumbersAbove1000(sumandosList);
 
             return sumandosList;

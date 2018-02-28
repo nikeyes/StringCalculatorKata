@@ -23,10 +23,5 @@ namespace StringCalculatorKata.src
             _sumandosList = calculatorMapper.MapTo(numbers);
             calculatorValidator.Validate(_sumandosList);
         }
-
-        public bool IsMultipleNumber()
-        {
-            return _sumandosList.Count() > 1;
-        }
     }
 }
