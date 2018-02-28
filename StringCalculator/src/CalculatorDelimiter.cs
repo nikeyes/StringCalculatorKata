@@ -12,6 +12,7 @@ namespace StringCalculatorKata.src
         private const string SPECIAL_DELIMITER = "//";
         public const string SALTO_DE_LINEA = "\n";
 
+        //TODO [REFACTOR] Huele a que se puede refactorizar
         public string GetDelimiter(string sumandos)
         {
             if (sumandos.Contains(SPECIAL_DELIMITER))
@@ -44,6 +45,7 @@ namespace StringCalculatorKata.src
             return sumandos.Replace(SALTO_DE_LINEA, delimiter);
         }
 
+        //TODO [REFACTOR] Huele a que se puede refactorizar
         private string RemoveSpecialDelmiter(string sumandos)
         {
             if (sumandos.Contains(SPECIAL_DELIMITER))
